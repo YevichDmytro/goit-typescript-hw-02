@@ -1,0 +1,7 @@
+.errorWrap {
+  text-align: center;
+}
+
+.errorWrap > img {
+  margin: 0 auto;
+}

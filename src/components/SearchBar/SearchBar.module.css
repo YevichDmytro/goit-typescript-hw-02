@@ -1,0 +1,17 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 2px dashed skyblue;
+  border-radius: 6px;
+  min-width: fit-content;
+  max-width: 400px;
+  padding: 16px 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}

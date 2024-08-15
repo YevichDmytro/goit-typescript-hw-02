@@ -1,0 +1,14 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin-bottom: 16px;
+}
+
+.listItem {
+  align-content: center;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: rgba(211, 211, 211, 0.35);
+}
