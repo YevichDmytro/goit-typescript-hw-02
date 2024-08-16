@@ -17,7 +17,7 @@ export const fetchGallery = async (
   };
 
   try {
-    const response = await axios.get('/search/photos', {
+    const response = await axios.get<ResponseData>('/search/photos', {
       params: params,
     });
 
