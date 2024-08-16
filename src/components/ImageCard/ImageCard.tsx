@@ -6,7 +6,7 @@ type Props = {
   onAlt: ImagesDataType['alt_description'];
 };
 
-const ImageCard = ({ onLink, onAlt }: Props) => {
+const ImageCard: React.FC<Props> = ({ onLink, onAlt }) => {
   return (
     <div>
       <img src={onLink.small} alt={onAlt} className={style.image} />

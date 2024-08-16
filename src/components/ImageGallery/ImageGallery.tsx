@@ -7,7 +7,7 @@ type Props = {
   handleOpenModal: (item: ImagesDataType) => void;
 }
 
-const ImageGallery = ({ items, handleOpenModal }: Props) => {
+const ImageGallery: React.FC<Props> = ({ items, handleOpenModal }) => {
   return (
     <ul className={style.gridContainer}>
       {items.map((item: ImagesDataType) => {

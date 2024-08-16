@@ -1,7 +1,7 @@
 import { Hourglass } from 'react-loader-spinner';
 import style from './Loader.module.css';
 
-const Loader = () => {
+const Loader: React.FC = () => {
   return (
     <div className={style.backdrop}>
       <Hourglass

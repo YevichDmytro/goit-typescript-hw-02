@@ -5,7 +5,7 @@ type Prop = {
   onPage: () => void;
 }
 
-const LoadMoreButton = ({ onPage }: Prop) => {
+const LoadMoreButton: React.FC<Prop> = ({ onPage }) => {
   return (
     <div className={style.loadMoreBtnBox}>
       <Button

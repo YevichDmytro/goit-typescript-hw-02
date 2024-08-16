@@ -7,7 +7,7 @@ type Props = {
   onSearch: (inputValue: string) => void;
 };
 
-const SearchBar = ({ onSearch }: Props) => {
+const SearchBar: React.FC<Props> = ({ onSearch }) => {
   const [topic, setTopic] = useState<string>('');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
