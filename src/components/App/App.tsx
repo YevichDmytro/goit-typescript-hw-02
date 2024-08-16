@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react';
-import { fetchGallery } from '../../unsplash-api';
 import SearchBar from '../SearchBar/SearchBar';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreButton/LoadMoreButton';
 import ImageModal from '../ImageModal/ImageModal';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { fetchGallery } from '../../unsplash-api';
+import { ImagesDataType, ResponseData } from '../../types/Images.types';
 import style from './App.module.css';
 
-function App() {
-  const [topic, setTopic] = useState('');
-  const [gallery, setGallery] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(999);
+const App: React.FC = () => {
+  const [topic, setTopic] = useState<string>('');
+  const [gallery, setGallery] = useState<ImagesDataType[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(999);
 
-  const [loader, setLoader] = useState(false);
-  const [error, setError] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [modalImg, setModalImg] = useState({});
+  const [loader, setLoader] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const [modalImg, setModalImg] = useState<ImagesDataType | null>(null);
 
   const isVisible = gallery.length > 0;
 
@@ -31,11 +33,13 @@ function App() {
   useEffect(() => {
     if (topic === '') return;
 
-    const getGallery = async () => {
+    const getGallery = async (): Promise<void> => {
       try {
         setLoader(true);
         setError(false);
-        const data = await fetchGallery(topic, currentPage);
+
+        const data: ResponseData = await fetchGallery(topic, currentPage);
+
         setTotalPages(data.total_pages);
         setGallery(prevGallery => [...prevGallery, ...data.results]);
       } catch (error) {
@@ -47,23 +51,23 @@ function App() {
     getGallery();
   }, [topic, currentPage]);
 
-  const handleSearch = async newTopic => {
+  const handleSearch = async (newTopic: string): Promise<void> => {
     setGallery([]);
     setCurrentPage(1);
     setTopic(newTopic);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setCurrentPage(currentPage + 1);
   };
 
-  const handleOpenModal = item => {
+  const handleOpenModal = (item: ImagesDataType): void => {
     setOpenModal(true);
     setModalImg(item);
     document.body.style.overflow = 'hidden';
   };
 
-  const openCloseModal = () => {
+  const openCloseModal = (): void => {
     setOpenModal(false);
     setModalImg(null);
     document.body.style.overflow = 'auto';
@@ -89,6 +93,6 @@ function App() {
       {totalPages === 0 && <p>No one image for this request</p>}
     </div>
   );
-}
+};
 
 export default App;

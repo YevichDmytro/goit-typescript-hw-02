@@ -1,7 +1,11 @@
 import { Button } from '@mui/material';
 import style from './LoadMoreButton.module.css';
 
-const LoadMoreButton = ({ onPage }) => {
+type Prop = {
+  onPage: () => void;
+}
+
+const LoadMoreButton = ({ onPage }: Prop) => {
   return (
     <div className={style.loadMoreBtnBox}>
       <Button

@@ -1,21 +1,23 @@
+import { FormEvent, useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import toast, { Toaster } from 'react-hot-toast';
 import style from './SearchBar.module.css';
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = e => {
+type Props = {
+  onSearch: (inputValue: string) => void;
+};
+
+const SearchBar = ({ onSearch }: Props) => {
+  const [topic, setTopic] = useState<string>('');
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    const form = e.target;
-    const inputValue = form.elements.search.value.trim();
-
-    if (inputValue === '') {
+    if (topic === '') {
       toast.error('Field are empty!');
     } else {
-      onSearch(inputValue);
+      onSearch(topic);
     }
-
-    form.reset();
   };
 
   return (
@@ -29,6 +31,7 @@ const SearchBar = ({ onSearch }) => {
           type='text'
           name='search'
           autoComplete='on'
+          onChange={e => setTopic(e.target.value.trim().toLowerCase())}
         />
         <Button variant='contained' type='submit'>
           Search

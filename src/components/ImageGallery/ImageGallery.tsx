@@ -1,10 +1,16 @@
+import { ImagesDataType } from '../../types/Images.types';
 import ImageCard from '../ImageCard/ImageCard';
 import style from './ImageGallery.module.css';
 
-const ImageGallery = ({ items, handleOpenModal }) => {
+type Props = {
+  items: ImagesDataType[];
+  handleOpenModal: (item: ImagesDataType) => void;
+}
+
+const ImageGallery = ({ items, handleOpenModal }: Props) => {
   return (
     <ul className={style.gridContainer}>
-      {items.map(item => {
+      {items.map((item: ImagesDataType) => {
         return (
           <li
             className={style.listItem}
